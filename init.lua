@@ -870,6 +870,19 @@ require('lazy').setup({
       require 'ya-journal'
     end,
   },
+  {
+    'epwalsh/pomo.nvim',
+    version = '*', -- Recommended, use latest release instead of latest commit
+    lazy = true,
+    cmd = { 'TimerStart', 'TimerRepeat', 'TimerStop', 'TimerHide', 'TimerShow', 'TimerPause', 'TimerResume' },
+    dependencies = {
+      -- Optional, but highly recommended if you want to use the "Default" timer
+      'rcarriga/nvim-notify',
+    },
+    opts = {
+      -- See below for full list of options 👇
+    },
+  },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
