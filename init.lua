@@ -1,7 +1,15 @@
 --[[ TODO: GLOBAL IDEAS FOR CONFIG:
 --    - Partial autocomplete for NVIM commands (i.e. ":Command")
 --    - Read README.md
+--    - Undo trees
+--    - Harpoon/ navigating situation
+--      - TMUX??
 --
+--]]
+--[[ TODO: Plugin ideas:
+--    - GitHub PR maker
+--      - Make a PR from markdown file and maybe include image
+--    - 
 --[[
 
 =====================================================================
