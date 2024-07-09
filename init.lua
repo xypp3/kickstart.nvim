@@ -915,8 +915,12 @@ require('lazy').setup({
     opts = {
       workspaces = {
         {
-          name = 'journal',
+          name = 'private',
           path = '~/pkm/journal/reflections/',
+        },
+        {
+          name = 'public',
+          path = '~/pkm/journal/public/',
         },
         {
           name = 'work',
