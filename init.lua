@@ -1,9 +1,19 @@
 --[[ TODO: GLOBAL IDEAS FOR CONFIG:
+--    -
+--    - Better file/directory creation
+--    -
 --    - Partial autocomplete for NVIM commands (i.e. ":Command")
+--    -
+--    - ELILXIR
+--    -
 --    - Read README.md
 --    - Undo trees
 --    - Harpoon/ navigating situation
 --      - TMUX??
+--    - Do todos where I can have big list and link in smaller list
+--    - MAKRDOWN: Have colourful bolding for
+--    - MARKDOWN: Better TODO lists
+--
 --
 --]]
 --[[ TODO: Plugin ideas:
@@ -211,6 +221,21 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- Harpoon 2
+--
+-- require('harpoon').setup({})
+-- vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end)
+-- vim.keymap.set("n", "<C-e>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end)
+--
+-- vim.keymap.set("n", "<C-h>", function() harpoon:list():select(1) end)
+-- vim.keymap.set("n", "<C-t>", function() harpoon:list():select(2) end)
+-- vim.keymap.set("n", "<C-n>", function() harpoon:list():select(3) end)
+-- vim.keymap.set("n", "<C-s>", function() harpoon:list():select(4) end)
+--
+-- -- Toggle previous & next buffers stored within Harpoon list
+-- vim.keymap.set("n", "<C-S-P>", function() harpoon:list():prev() end)
+-- vim.keymap.set("n", "<C-S-N>", function() harpoon:list():next() end)
+--
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
@@ -566,6 +591,10 @@ require('lazy').setup({
         html = {},
         htmx = {},
         gopls = {},
+        jdtls = {},
+        ocamllsp = {},
+        elixirls = {},
+
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -827,7 +856,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', 'javascript', 'go' },
+      ensure_installed = { 'bash', 'c', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', 'javascript', 'go', 'elixir', 'eex', 'heex', 'zig' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -863,7 +892,7 @@ require('lazy').setup({
   --  Here are some example plugins that I've included in the Kickstart repository.
   --  Uncomment any of the lines below to enable them (you will need to restart nvim).
   --
-  -- require 'kickstart.plugins.debug',
+  require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
 
@@ -881,19 +910,11 @@ require('lazy').setup({
       require 'ya-journal'
     end,
   },
-  {
-    'epwalsh/pomo.nvim',
-    version = '*', -- Recommended, use latest release instead of latest commit
-    lazy = true,
-    cmd = { 'TimerStart', 'TimerRepeat', 'TimerStop', 'TimerHide', 'TimerPause', 'TimerResume' },
-    dependencies = {
-      -- Optional, but highly recommended if you want to use the "Default" timer
-      'rcarriga/nvim-notify',
-    },
-    opts = {
-      -- See below for full list of options 👇
-    },
-  },
+  -- {
+  --   'ThePrimeagen/harpoon',
+  --   branch = 'harpoon2',
+  --   dependencies = { 'nvim-lua/plenary.nvim'},
+  -- },
   {
     'epwalsh/obsidian.nvim',
     version = '*', -- recommended, use latest release instead of latest commit
@@ -936,6 +957,27 @@ require('lazy').setup({
         substitutions = {},
       },
     },
+  },
+  {
+    'kdheepak/lazygit.nvim',
+    dependencies = {
+      'nvim-telescope/telescope.nvim',
+      'nvim-lua/plenary.nvim',
+    },
+    cmd = {
+      'LazyGit',
+      'LazyGitConfig',
+      'LazyGitCurrentFile',
+      'LazyGitFilter',
+      'LazyGitFilterCurrentFile',
+    },
+    keys = {
+      { '<leader>lg', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
+    },
+
+    config = function()
+      require('telescope').load_extension 'lazygit'
+    end,
   },
 }, {
   ui = {
