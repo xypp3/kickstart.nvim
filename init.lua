@@ -171,7 +171,7 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'
 
--- Show which line your cursor is on
+-- Show Workspacewhich line your cursor is on
 vim.opt.cursorline = true
 
 -- Minimal number of screen lines to keep above and below the cursor.
@@ -333,6 +333,7 @@ require('lazy').setup({
         ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
         ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
         ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
+        ['<leader>o'] = { name = '[O]bsidian', _ = 'which_key_ignore' },
       }
     end,
   },
@@ -915,6 +916,7 @@ require('lazy').setup({
   --   branch = 'harpoon2',
   --   dependencies = { 'nvim-lua/plenary.nvim'},
   -- },
+
   {
     'epwalsh/obsidian.nvim',
     version = '*', -- recommended, use latest release instead of latest commit
@@ -922,6 +924,11 @@ require('lazy').setup({
     -- lazy.nvim feature (not mentioned in obsidian.nvim)
     cmd = { 'ObsidianWorkspace' },
     ft = 'markdown',
+    keys = {
+      { '<leader>ow', '<cmd>ObsidianWorkspace<cr>', desc = 'Open Obsidian Workspace' },
+      { '<leader>oo', '<cmd>ObsidianSearch<cr>', desc = 'Open Obsidian Note' },
+      { '<leader>on', '<cmd>ObsidianNew<cr>', desc = 'Open Obsidian NEW Note' },
+    },
     -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
     -- event = {
     --   -- If you want to use the home shortcut '~' here you need to call 'vim.fn.expand'.
@@ -935,20 +942,16 @@ require('lazy').setup({
     },
     opts = {
       workspaces = {
-        {
-          name = 'private',
-          path = '~/pkm/journal/reflections/',
-        },
+
         {
           name = 'public',
           path = '~/pkm/journal/public/',
         },
         {
-          name = 'work',
-          path = '~/pkm/jobs/drs-leaning/vault/',
+          name = 'private',
+          path = '~/pkm/journal/reflections/',
         },
       },
-
       templates = {
         folder = '~/.config/nvim/obsidian/templates/',
         date_format = '%Y-%m-%d-%a',
@@ -958,6 +961,7 @@ require('lazy').setup({
       },
     },
   },
+
   {
     'kdheepak/lazygit.nvim',
     dependencies = {
