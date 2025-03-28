@@ -13,6 +13,9 @@
 --    - Do todos where I can have big list and link in smaller list
 --    - MAKRDOWN: Have colourful bolding for
 --    - MARKDOWN: Better TODO lists
+--    -
+--    - PLUGIN IDEA:
+--    ---- Anchor current buffer as current directory (for lazygit or obsidian search)
 --
 --
 --]]
@@ -928,6 +931,8 @@ require('lazy').setup({
       { '<leader>ow', '<cmd>ObsidianWorkspace<cr>', desc = 'Open Obsidian Workspace' },
       { '<leader>oo', '<cmd>ObsidianSearch<cr>', desc = 'Open Obsidian Note' },
       { '<leader>on', '<cmd>ObsidianNew<cr>', desc = 'Open Obsidian NEW Note' },
+      -- NOTE: This keymap is important as 'gf' doesn't create backlinks when going to files
+      { '<leader>of', '<cmd>ObsidianFollowLink<cr>', desc = 'Follow Obsidian link' },
     },
     -- Replace the above line with this if you only want to load obsidian.nvim for markdown files in your vault:
     -- event = {
